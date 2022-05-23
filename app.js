@@ -1,9 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const helmet = require('helmet');
 const morgan = require('morgan');
-const mongoose = require('mongoose');
 const connectToDB = require('./db/connection');
 const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
@@ -15,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
-app.use(helmet());
 app.use(morgan('tiny'));
 app.use(express.static('public'));
 app.use('/api/v1', authRoutes);

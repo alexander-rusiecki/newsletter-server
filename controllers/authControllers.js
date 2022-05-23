@@ -1,10 +1,18 @@
+const User = require('../models/User');
+
 const login = (req, res) => {
-  console.log(req.body);
+  const { email, password, isSubscribing } = req.body;
   res.send('login');
 };
 
-const signup = (req, res) => {
-  console.log(req.body);
+const signup = async (req, res) => {
+  const { email, password, isSubscribing } = req.body;
+  try {
+    const newUser = await User.create({ email, password, isSubscribing });
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(400).json({ msg: error });
+  }
   res.send('signup');
 };
 
