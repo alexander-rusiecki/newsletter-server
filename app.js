@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const connectToDB = require('./db/connection');
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +15,15 @@ app.use(cookieParser());
 app.use(cors());
 app.use(express.static('public'));
 
-app.listen(PORT, () => {
-  console.log(`Connected to database and server running on port: ${PORT}`);
-});
+app.set('view engine', 'ejs');
+
+const init = async () => {
+  try {
+    await connectToDB();
+    app.listen(PORT, () =>
+      console.log(`Connected to database and server running on port: ${PORT}`)
+    );
+  } catch (error) {}
+};
+
+init();
