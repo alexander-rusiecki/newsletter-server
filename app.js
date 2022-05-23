@@ -1,19 +1,24 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 const connectToDB = require('./db/connection');
+const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 6000;
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
+app.use(helmet());
+app.use(morgan('tiny'));
 app.use(express.static('public'));
+app.use('/api/v1', authRoutes);
 
 app.set('view engine', 'ejs');
 
