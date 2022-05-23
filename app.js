@@ -25,7 +25,9 @@ const init = async () => {
     app.listen(PORT, () =>
       console.log(`Connected to database and server running on port: ${PORT}`)
     );
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 init();

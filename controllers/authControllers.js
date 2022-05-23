@@ -13,7 +13,6 @@ const signup = async (req, res) => {
   } catch (error) {
     res.status(400).json({ msg: error });
   }
-  res.send('signup');
 };
 
 module.exports = { login, signup };
