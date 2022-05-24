@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const connectToDB = require('./db/connection');
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.static('public'));
 app.use('/api/v1', authRoutes);
+app.use('/api/v1/admin', adminRoutes);
 
 app.set('view engine', 'ejs');
 
