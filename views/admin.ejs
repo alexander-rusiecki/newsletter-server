@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <header><%- include('./partials/nav.ejs') %></header>
+    <main>
+      <% if (users.length > 0 ) { %> <% users.forEach(user => { %>
+      <article>
+        <h3><%= user.email %></h3>
+        <p><%= user.isSubscribing %></p>
+      </article>
+      <% }) %> <% } %>
+    </main>
+  </body>
+</html>

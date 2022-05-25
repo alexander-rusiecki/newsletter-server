@@ -5,19 +5,21 @@ const morgan = require('morgan');
 const connectToDB = require('./db/connection');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 6000;
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(cors({ credentials: true, origin: true }));
 app.use(morgan('tiny'));
 app.use(express.static('public'));
 app.use('/api/v1', authRoutes);
 app.use('/api/v1/admin', adminRoutes);
+app.use('/api/v1/dashboard', dashboardRoutes);
 
 app.set('view engine', 'ejs');
 
