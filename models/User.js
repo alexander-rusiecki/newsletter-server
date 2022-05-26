@@ -22,7 +22,6 @@ const userSchema = new mongoose.Schema(
     },
     isSubscribing: {
       type: Boolean,
-      default: true,
     },
   },
   { timestamps: true }

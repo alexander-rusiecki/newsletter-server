@@ -2,6 +2,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
 const connectToDB = require('./db/connection');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
@@ -16,12 +19,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: true }));
 app.use(morgan('tiny'));
+app.use(helmet());
+app.use(xss());
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+  })
+);
 app.use(express.static('public'));
-app.use('/api/v1', authRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/dashboard', dashboardRoutes);
+app.use('/api/v1', authRoutes);
 
 app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => res.render('index', { title: 'Login' }));
+// app.get('/admin', (req, res) => res.render('admin', { title: 'Admin', users }));
+
+app.use((req, res) =>
+  res.status(404).render('404', { title: '404 - Not found' })
+);
 
 const init = async () => {
   try {
