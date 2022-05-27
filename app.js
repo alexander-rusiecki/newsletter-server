@@ -13,15 +13,11 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 6000;
-const corsOptions = {
-  origin: '*',
-  credentials: true,
-  optionSuccessStatus: 200,
-};
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
+app.use(cors({ credentials: true, origin: true }));
 app.use(morgan('tiny'));
 app.use(helmet());
 app.use(xss());
@@ -34,7 +30,7 @@ app.use(
   })
 );
 app.use(express.static('public'));
-app.use('/api/v1/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 app.use('/api/v1/dashboard', dashboardRoutes);
 app.use('/api/v1', authRoutes);
 
