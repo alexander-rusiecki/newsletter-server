@@ -4,26 +4,29 @@
   <body>
     <header><%- include('./partials/nav.ejs') %></header>
     <main class="admin-container">
-      <h1>admin</h1>
-      <div>
-        <h1>all users</h1>
-        <ul>
-          <% if (users.length > 0 ) { %> <% users.forEach(user => { %>
-          <li class="book-card">
-            <h3><%= user.email %></h3>
-          </li>
-          <% }) %> <% } %>
-        </ul>
-        <h1>subscribers</h1>
-        <ul>
-          <% if (users.length > 0 ) { %> <% users.forEach(user => { %> <%
-          if(user.isSubscribing) { %>
-          <li class="book-card">
-            <h3><%= user.email %></h3>
-            <h3><%= user.isSubscribing %></h3>
-          </li>
-          <% } %> <% }) %> <% } %>
-        </ul>
+      <h1>Admin</h1>
+      <div class="grid">
+        <div>
+          <h3>All users</h3>
+          <ul>
+            <% if (users.length > 0 ) { %> <% users.forEach(user => { %>
+            <li class="book-card">
+              <p><%= user.email %></p>
+            </li>
+            <% }) %> <% } %>
+          </ul>
+        </div>
+        <div>
+          <h3>Subscribers</h3>
+          <ul>
+            <% if (users.length > 0 ) { %> <% users.forEach(user => { %> <%
+            if(user.isSubscribing ) { %>
+            <li class="book-card">
+              <p><%= user.email %>,</p>
+            </li>
+            <% } %><% }) %> <% } %>
+          </ul>
+        </div>
       </div>
     </main>
   </body>

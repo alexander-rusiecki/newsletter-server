@@ -37,7 +37,6 @@ app.use('/api/v1', authRoutes);
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => res.render('index', { title: 'Login' }));
-// app.get('/admin', (req, res) => res.render('admin', { title: 'Admin', users }));
 
 app.use((req, res) =>
   res.status(404).render('404', { title: '404 - Not found' })
