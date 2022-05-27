@@ -8,7 +8,7 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(401).json({ msg: 'Invalid email or password' });
     }
-    const token = await createToken(user._id);
+    const token = createToken(user._id);
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
@@ -27,16 +27,20 @@ const signup = async (req, res) => {
   const { email, password, isSubscribing } = req.body;
   try {
     const newUser = await User.create({ email, password, isSubscribing });
-    const token = await createToken(newUser._id);
-    res.cookie('jwt', token, {
-      httpOnly: true,
-      secure: true,
-      maxAge: process.env.MAX_AGE,
-    });
-    res.status(201).json({
-      email: newUser.email,
-      isSubscribing: newUser.isSubscribing,
-    });
+    try {
+      const token = createToken(newUser._id);
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        secure: true,
+        maxAge: process.env.MAX_AGE,
+      });
+      res.status(201).json({
+        email: newUser.email,
+        isSubscribing: newUser.isSubscribing,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
