@@ -17,7 +17,12 @@ const PORT = process.env.PORT || 6000;
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: true }));
+app.use(
+  cors({
+    credentials: true,
+    origin: 'https://alexander-rusiecki.github.io/newsletter-client/',
+  })
+);
 app.use(morgan('tiny'));
 app.use(helmet());
 app.use(xss());
