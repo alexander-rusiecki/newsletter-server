@@ -10,6 +10,8 @@ const login = async (req, res) => {
     }
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: process.env.MAX_AGE });
+    res.header('Access-Control-Allow-Origin', '*');
+
     res.status(200).json({
       email: user.email,
       isSubscribing: user.isSubscribing,
@@ -25,6 +27,8 @@ const signup = async (req, res) => {
     const newUser = await User.create({ email, password, isSubscribing });
     const token = createToken(newUser._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: process.env.MAX_AGE });
+    res.header('Access-Control-Allow-Origin', '*');
+
     res.status(201).json({
       email: newUser.email,
       isSubscribing: newUser.isSubscribing,
