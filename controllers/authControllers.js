@@ -14,7 +14,6 @@ const login = async (req, res) => {
       secure: true,
       maxAge: process.env.MAX_AGE,
     });
-    res.header('Access-Control-Allow-Origin', '*');
 
     res.status(200).json({
       email: user.email,
@@ -35,7 +34,6 @@ const signup = async (req, res) => {
       secure: true,
       maxAge: process.env.MAX_AGE,
     });
-    res.header('Access-Control-Allow-Origin', '*');
 
     res.status(201).json({
       email: newUser.email,
