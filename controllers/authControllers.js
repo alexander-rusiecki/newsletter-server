@@ -8,7 +8,7 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(401).json({ msg: 'Invalid email or password' });
     }
-    const token = createToken(user._id);
+    const token = await createToken(user._id);
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
@@ -27,7 +27,7 @@ const signup = async (req, res) => {
   const { email, password, isSubscribing } = req.body;
   try {
     const newUser = await User.create({ email, password, isSubscribing });
-    const token = createToken(newUser._id);
+    const token = await createToken(newUser._id);
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
