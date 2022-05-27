@@ -15,3 +15,5 @@
 - creating .env file (check the .env.example-file for info)
 - npm install
 - npm start
+
+[Live demo](https://newsletter-app-server.herokuapp.com/)
