@@ -6,12 +6,12 @@ const login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     if (!user) {
-      return res.status(401).json({ msg: 'Invalid email or password' });
+      return res.status(401).json({ errorMsg: 'Invalid email or password' });
     }
     const token = createToken(user._id);
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: true,
+      // secure: true,
       maxAge: process.env.MAX_AGE,
     });
     res.status(200).json({
@@ -19,7 +19,7 @@ const login = async (req, res) => {
       isSubscribing: user.isSubscribing,
     });
   } catch (error) {
-    res.status(400).json({ msg: error.message });
+    res.status(400).json({ errorMsg: error.message });
   }
 };
 
@@ -27,22 +27,18 @@ const signup = async (req, res) => {
   const { email, password, isSubscribing } = req.body;
   try {
     const newUser = await User.create({ email, password, isSubscribing });
-    try {
-      const token = createToken(newUser._id);
-      res.cookie('jwt', token, {
-        httpOnly: true,
-        secure: true,
-        maxAge: process.env.MAX_AGE,
-      });
-      res.status(201).json({
-        email: newUser.email,
-        isSubscribing: newUser.isSubscribing,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    const token = createToken(newUser._id);
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      // secure: true,
+      maxAge: process.env.MAX_AGE,
+    });
+    res.status(201).json({
+      email: newUser.email,
+      isSubscribing: newUser.isSubscribing,
+    });
   } catch (error) {
-    res.status(400).json({ msg: error.message });
+    res.status(400).json({ errorMsg: error.message });
   }
 };
 

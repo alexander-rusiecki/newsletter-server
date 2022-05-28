@@ -11,7 +11,7 @@ const adminLogin = async (req, res) => {
     }
     res.redirect('/');
   } catch (error) {
-    console.log(error);
+    res.status(401).json({ errorMsg: error.message });
   }
 };
 

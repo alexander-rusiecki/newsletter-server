@@ -114,3 +114,7 @@ button:hover {
   grid-column-gap: 4px;
   grid-row-gap: 0px;
 }
+
+.error {
+  color: red;
+}
