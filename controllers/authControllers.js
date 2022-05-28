@@ -12,6 +12,7 @@ const login = async (req, res) => {
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
+      proxy: true,
       maxAge: process.env.MAX_AGE,
       sameSite: 'none',
       domain: 'https://delightful-fairy-a909d8.netlify.app/',
@@ -33,6 +34,7 @@ const signup = async (req, res) => {
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
+      proxy: true,
       maxAge: process.env.MAX_AGE,
       sameSite: 'none',
       domain: 'https://delightful-fairy-a909d8.netlify.app/',
