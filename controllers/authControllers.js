@@ -15,7 +15,6 @@ const login = async (req, res) => {
       proxy: true,
       maxAge: process.env.MAX_AGE,
       sameSite: 'none',
-      domain: 'https://delightful-fairy-a909d8.netlify.app/',
     });
     res.status(200).json({
       email: user.email,
@@ -37,7 +36,6 @@ const signup = async (req, res) => {
       proxy: true,
       maxAge: process.env.MAX_AGE,
       sameSite: 'none',
-      domain: 'https://delightful-fairy-a909d8.netlify.app/',
     });
     res.status(201).json({
       email: newUser.email,
