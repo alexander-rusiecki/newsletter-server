@@ -47,7 +47,8 @@ const signup = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.clearCookie('jwt');
+  res.cookie('jwt', '', { maxAge: 1 });
+
   res.status(200).json({ msg: 'You are logged out, welcome back any time.' });
 };
 
