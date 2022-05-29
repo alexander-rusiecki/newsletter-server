@@ -12,7 +12,6 @@ const login = async (req, res) => {
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
-      proxy: true,
       maxAge: process.env.MAX_AGE,
       sameSite: 'none',
     });
@@ -33,7 +32,6 @@ const signup = async (req, res) => {
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
-      proxy: true,
       maxAge: process.env.MAX_AGE,
       sameSite: 'none',
     });
@@ -47,8 +45,7 @@ const signup = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.cookie('jwt', '', { maxAge: 1 });
-
+  res.clearCookie('jwt');
   res.status(200).json({ msg: 'You are logged out, welcome back any time.' });
 };
 

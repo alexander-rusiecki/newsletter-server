@@ -2,13 +2,13 @@
 
 ## Tech stack
 
-- express
+- Express
 - Mongoose
-- jsonwebtoken
-- ejs
-- bcrypt
-- express-rate-limit
-- xss-clean
+- Jsonwebtoken
+- Ejs
+- Bcrypt
+- Express-rate-limit
+- Xss-clean
 
 ### Start project by:
 

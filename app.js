@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: true }));
 app.use(morgan('tiny'));
-app.use(helmet());
+// app.use(helmet());
 app.use(xss());
 app.use(
   rateLimit({
