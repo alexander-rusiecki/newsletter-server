@@ -11,7 +11,7 @@ const login = async (req, res) => {
     const token = createToken(user._id);
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: true,
+      // secure: true,
       maxAge: process.env.MAX_AGE,
       sameSite: 'none',
     });
@@ -31,7 +31,7 @@ const signup = async (req, res) => {
     const token = createToken(newUser._id);
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: true,
+      // secure: true,
       maxAge: process.env.MAX_AGE,
       sameSite: 'none',
     });
