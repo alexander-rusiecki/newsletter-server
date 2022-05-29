@@ -12,7 +12,7 @@
 
 ### Start project by:
 
-- creating .env file (read .env.example for required environment variables)
+- creating a .env file (read .env.example for required environment variables)
 - npm install
 - npm start (node)
 - npm run dev (nodemon)
