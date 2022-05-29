@@ -13,7 +13,7 @@ const login = async (req, res) => {
       httpOnly: true,
       // secure: true,
       maxAge: process.env.MAX_AGE,
-      sameSite: 'none',
+      // sameSite: 'none',
     });
     res.status(200).json({
       email: user.email,
@@ -33,7 +33,7 @@ const signup = async (req, res) => {
       httpOnly: true,
       // secure: true,
       maxAge: process.env.MAX_AGE,
-      sameSite: 'none',
+      // sameSite: 'none',
     });
     res.status(201).json({
       email: newUser.email,

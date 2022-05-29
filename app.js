@@ -13,19 +13,20 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 6000;
-app.set('trust proxy', 1);
+// maybe:
+// app.set('trust proxy', 1);
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: true }));
 app.use(morgan('tiny'));
-// app.use(helmet());
+app.use(helmet());
 app.use(xss());
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100,
+    max: 1000,
     standardHeaders: true,
     legacyHeaders: false,
   })
